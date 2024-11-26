@@ -51,7 +51,8 @@ public class HomeController {
         String secretValue = secretClient.getSecret(secretName).getValue();
 
         // Display the secret value
-        System.out.println("Secret Value: " + secretValue);
+        log.info("Secret Value: {}.", secretValue);
+
 
         return "home";
     }
