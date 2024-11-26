@@ -1,6 +1,5 @@
 package fi.eis.applications.spring.mvc.example;
 
-import fi.eis.applications.spring.mvc.example.counter.CounterConfig;
 import fi.eis.applications.spring.mvc.example.home.HomeConfig;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
