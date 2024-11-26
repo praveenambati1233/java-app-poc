@@ -15,7 +15,7 @@ import org.springframework.web.servlet.view.JstlView;
 
 @Configuration
 @EnableWebMvc
-@Import({HomeConfig.class, CounterConfig.class})
+@Import({HomeConfig.class})
 public class WebConfig implements WebMvcConfigurer {
 
     @Override
