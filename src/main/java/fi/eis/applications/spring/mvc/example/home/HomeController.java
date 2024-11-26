@@ -11,6 +11,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import lombok.extern.slf4j.Slf4j;
 
+import com.azure.identity.DefaultAzureCredentialBuilder;
+import com.azure.security.keyvault.secrets.SecretClient;
+import com.azure.security.keyvault.secrets.SecretClientBuilder;
+
 /**
  * Handles requests for the application home page.
  */
@@ -33,6 +37,21 @@ public class HomeController {
         String formattedDate = dateFormat.format(date);
 
         model.addAttribute("serverTime", formattedDate);
+
+        String keyVaultUrl = "https://application-a-kv.vault.azure.net/";
+
+        // Build the SecretClient using managed identity authentication
+        SecretClient secretClient = new SecretClientBuilder()
+                .vaultUrl(keyVaultUrl)
+                .credential(new DefaultAzureCredentialBuilder().build())
+                .buildClient();
+
+        // Retrieve the secret
+        String secretName = "mysecret";
+        String secretValue = secretClient.getSecret(secretName).getValue();
+
+        // Display the secret value
+        System.out.println("Secret Value: " + secretValue);
 
         return "home";
     }
